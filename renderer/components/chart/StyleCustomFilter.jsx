@@ -1,3 +1,4 @@
+import NumberInput from './style/NumberInput'
 import { colorArr } from './style/styleElement'
 
 export default function StyleCustomFilter(props) {
@@ -22,6 +23,7 @@ export default function StyleCustomFilter(props) {
       return newState
     })
   }
+
   function updateBarThicknessColor(event, index) {
     setStyleState(prev => {
       const newState = [...prev]
@@ -52,28 +54,20 @@ export default function StyleCustomFilter(props) {
         <div key={el.id}>
           <p>{el.name}</p>
           {el.type === 'line' && (
-            <>
-              <label>lineBorderWidth : </label>
-              <input
-                type="number"
-                defaultValue={el.borderWidth}
-                onChange={event =>
-                  updateBorderWidth(event.currentTarget.value, index)
-                }
-              />
-            </>
+            <NumberInput
+              title={'lineBorderWidth'}
+              defaultValue={el.borderWidth}
+              onChange={updateBorderWidth}
+              index={index}
+            />
           )}
           {el.type === 'bar' && (
-            <>
-              <label>barWidth : </label>
-              <input
-                type="number"
-                defaultValue={el.barThickness}
-                onChange={event =>
-                  updateBarThicknessColor(event.currentTarget.value, index)
-                }
-              />
-            </>
+            <NumberInput
+              title={'barWidth'}
+              defaultValue={el.barThickness}
+              onChange={updateBarThicknessColor}
+              index={index}
+            />
           )}
           <label>color :</label>
           <select
