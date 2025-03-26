@@ -8,6 +8,7 @@ export default function HomePage() {
   return (
     <React.Fragment>
       <AskChart type="line" data={data} />
+      <AskChart type="mixed" data={data} />
     </React.Fragment>
   )
 }
