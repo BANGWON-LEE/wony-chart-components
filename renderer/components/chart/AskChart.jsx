@@ -1,15 +1,15 @@
+import { useState } from 'react'
 import ChartType from './ChartType'
-import { formatLineData, setLineData } from './line/lineData'
+import { formatData, setInitialStyle, setLineData } from './line/lineData'
 import StyleCustomFilter from './StyleCustomFilter'
+import { colorArr } from './style/styleElement'
 
 export default function AskChart(props) {
   const { type, data } = props
-  const lineData = setLineData(formatLineData(data))
 
   return (
     <>
-      <ChartType type={type} data={lineData} />
-      <StyleCustomFilter />
+      <ChartType type={type} data={data} />
     </>
   )
 }
