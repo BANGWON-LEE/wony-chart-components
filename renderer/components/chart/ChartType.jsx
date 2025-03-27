@@ -52,6 +52,7 @@ export default function ChartType(props) {
               closeModalBtn={handleOpenStyleFilterModal}
               styleState={styleState}
               setStyleState={setStyleState}
+              type={type}
             />
           )}
         </>
@@ -69,6 +70,7 @@ export default function ChartType(props) {
               closeModalBtn={handleOpenStyleFilterModal}
               styleState={styleState}
               setStyleState={setStyleState}
+              type={type}
             />
           )}
         </>

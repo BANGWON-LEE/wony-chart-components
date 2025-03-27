@@ -51,10 +51,9 @@ export default function StyleCustomFilter(props) {
   return (
     <div className="fixed inset-0 flex items-center justify-center bg-slate-500 bg-opacity-20">
       <div className="bg-white p-6 rounded-lg shadow-lg w-[70vw]">
-        <button onClick={() => closeModalBtn()}>x</button>
         {styleState.map((el, index) => (
           <div key={el.id} className="flex justify-between">
-            <p>{el.name}</p>
+            <p className="w-[110px]">{el.name}</p>
             {el.type === 'line' && (
               <NumberInput
                 title={'lineBorderWidth'}
@@ -110,6 +109,14 @@ export default function StyleCustomFilter(props) {
             )}
           </div>
         ))}
+        <div className="w-full text-center mt-6">
+          <button
+            className="px-4 py-2 rounded-md bg-blue-400 text-white font-semibold "
+            onClick={() => closeModalBtn()}
+          >
+            닫기
+          </button>
+        </div>
       </div>
     </div>
   )
