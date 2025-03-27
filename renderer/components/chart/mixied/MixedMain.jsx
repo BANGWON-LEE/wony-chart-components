@@ -12,7 +12,7 @@ export default function MixedMain(props) {
       title: {
         display: true,
         position: 'top',
-        text: 'Chart.js Line Chart',
+        text: 'Chart.js mixed Chart',
       },
     },
     scales: {
