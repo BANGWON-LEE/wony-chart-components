@@ -10,6 +10,8 @@ export default function App() {
     <React.Fragment>
       <AskChart type="line" data={data} width={1300} height={480} />
       <AskChart type="mixed" data={data} width={1300} height={480} />
+      <AskChart type="bar" data={data} width={1300} height={480} />
+      <AskChart type="stackBar" data={data} width={1300} height={480} />
     </React.Fragment>
   )
 }
