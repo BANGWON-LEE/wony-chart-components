@@ -4,26 +4,31 @@ export const dummyData = {
       time: '2024-03-18 10:00',
       temperature: 22.5,
       humidity: 55,
+      co2: 33,
     },
     {
       time: '2024-03-18 10:01',
       temperature: 22.7,
       humidity: 54,
+      co2: 23,
     },
     {
       time: '2024-03-18 10:02',
       temperature: 22.8,
       humidity: 53,
+      co2: 39,
     },
     {
       time: '2024-03-18 10:03',
       temperature: 22.8,
       humidity: 53,
+      co2: 55,
     },
     {
       time: '2024-03-18 10:04',
       temperature: 22.8,
       humidity: 53,
+      co2: 44,
     },
   ],
 }
