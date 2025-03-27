@@ -16,7 +16,7 @@ import {
 import MixedMain from './mixied/mixedMain'
 
 export default function ChartType(props) {
-  const { type, data } = props
+  const { type, data, width, hegiht } = props
 
   const lineData = formatLineData(data) // 데이터를 속성별로 정리
   const mixiedData = formatMixedData(data) // 데이터를 속성별로 정리
@@ -34,27 +34,43 @@ export default function ChartType(props) {
   const resultLineData = setLineData(lineData, styleState)
   const resultMixedData = setMixedData(lineData, styleState)
 
+  const [openCustomFilterModalState, setOpenCustomFilterModalState] =
+    useState(false)
+
+  function handleOpenStyleFilterModal() {
+    setOpenCustomFilterModalState(!openCustomFilterModalState)
+  }
+
   switch (type) {
     case 'line':
       return (
         <>
-          <LineMain data={resultLineData} />
-          <StyleCustomFilter
-            styleState={styleState}
-            setStyleState={setStyleState}
-          />
+          <LineMain data={resultLineData} width={width} hegiht={hegiht} />
+          <button onClick={() => handleOpenStyleFilterModal()}>open</button>
+          {openCustomFilterModalState && (
+            <StyleCustomFilter
+              closeModalBtn={handleOpenStyleFilterModal}
+              styleState={styleState}
+              setStyleState={setStyleState}
+            />
+          )}
         </>
       )
 
     case 'mixed':
       return (
         <>
-          <MixedMain data={resultMixedData} />
-          <StyleCustomFilter
-            styleState={styleState}
-            setStyleState={setStyleState}
-            type={'mixed'}
-          />
+          <MixedMain data={resultMixedData} width={width} hegiht={hegiht} />
+          <div>
+            <button onClick={() => handleOpenStyleFilterModal()}>open</button>
+          </div>
+          {openCustomFilterModalState && (
+            <StyleCustomFilter
+              closeModalBtn={handleOpenStyleFilterModal}
+              styleState={styleState}
+              setStyleState={setStyleState}
+            />
+          )}
         </>
       )
     default:

@@ -1,7 +1,7 @@
 import { Chart } from 'react-chartjs-2'
 
 export default function MixedMain(props) {
-  const { data } = props
+  const { data, width, height } = props
 
   const options = {
     responsive: false,
@@ -32,7 +32,7 @@ export default function MixedMain(props) {
   return (
     <div>
       <div>
-        <Chart data={data} options={options} width={1900} height={300} />
+        <Chart data={data} options={options} width={width} height={height} />
       </div>
     </div>
   )
