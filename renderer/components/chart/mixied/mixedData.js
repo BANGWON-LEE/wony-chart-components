@@ -13,10 +13,13 @@ export function formatMixedData(data) {
 }
 
 export function setMixedData(data, styleState) {
-  const labels = data['time']
+  const timePropertyName = 'time' // api를 통해서 받아오은 시간 값 프로퍼티 명을 입력하세요
+  const labels = data[timePropertyName]
 
   const dataTitle = Object.keys(data)
-  const notLabelTitleArr = dataTitle.filter(el => el.toString() !== 'time')
+  const notLabelTitleArr = dataTitle.filter(
+    el => el.toString() !== timePropertyName
+  )
 
   return {
     labels,
@@ -33,10 +36,18 @@ export function setMixedData(data, styleState) {
 }
 
 export function setInitialMixedStyle(lineData) {
+  const timePropertyName = 'time' // api를 통해서 받아오은 시간 값 프로퍼티 명을 입력하세요
   const dataTitle = Object.keys(lineData)
-  const notLabelTitleArr = dataTitle.filter(el => el.toString() !== 'time')
-  const mixedType = ['line', 'bar']
+  const notLabelTitleArr = dataTitle.filter(
+    el => el.toString() !== timePropertyName
+  )
   const sizeLineData = Object.keys(notLabelTitleArr).length // time을 제외한 속성의 개수
+  const mixedTypeArr = Array.from(
+    { length: sizeLineData - 1 },
+    (_, index) => 'bar'
+  )
+  const mixedType = ['line', ...mixedTypeArr]
+
   const styleStateObjArr = Array.from({ length: sizeLineData }, (_, index) => ({
     id: 'mixed' + index,
     name: notLabelTitleArr[index],

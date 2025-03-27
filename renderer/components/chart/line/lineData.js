@@ -13,10 +13,13 @@ export function formatLineData(data) {
 }
 
 export function setLineData(data, styleState) {
-  const labels = data['time']
+  const timePropertyName = 'time' // api를 통해서 받아오은 시간 값 프로퍼티 명을 입력하세요
+  const labels = data[timePropertyName]
 
   const dataTitle = Object.keys(data)
-  const notLabelTitleArr = dataTitle.filter(el => el.toString() !== 'time')
+  const notLabelTitleArr = dataTitle.filter(
+    el => el.toString() !== timePropertyName
+  )
 
   return {
     labels,
@@ -32,8 +35,11 @@ export function setLineData(data, styleState) {
 }
 
 export function setInitialLineStyle(lineData) {
+  const timePropertyName = 'time' // api를 통해서 받아오은 시간 값 프로퍼티 명을 입력하세요
   const dataTitle = Object.keys(lineData)
-  const notLabelTitleArr = dataTitle.filter(el => el.toString() !== 'time')
+  const notLabelTitleArr = dataTitle.filter(
+    el => el.toString() !== timePropertyName
+  )
 
   const sizeLineData = Object.keys(notLabelTitleArr).length // time을 제외한 속성의 개수
   const styleStateObjArr = Array.from({ length: sizeLineData }, (_, index) => ({
