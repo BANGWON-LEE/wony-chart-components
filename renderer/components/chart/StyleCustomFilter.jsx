@@ -6,6 +6,7 @@ export default function StyleCustomFilter(props) {
     props
 
   function updateBorderWidth(event, index) {
+    // border width 값 조절하는 함수 (line)
     setStyleState(prev => {
       const newState = [...prev]
       newState[index] = { ...newState[index], borderWidth: Number(event) }
@@ -13,7 +14,8 @@ export default function StyleCustomFilter(props) {
     })
   }
 
-  function updateBorderColor(event, index) {
+  function updateBackColor(event, index) {
+    // border와 bar color 값 조절하는 함수 (line)
     setStyleState(prev => {
       const newState = [...prev]
       newState[index] = {
@@ -26,6 +28,7 @@ export default function StyleCustomFilter(props) {
   }
 
   function updateBarThicknessColor(event, index) {
+    // bar width 값 조절하는 함수 (bar)
     setStyleState(prev => {
       const newState = [...prev]
       newState[index] = {
@@ -37,6 +40,7 @@ export default function StyleCustomFilter(props) {
   }
 
   function changeChartTypeInMixed(event, index) {
+    // 차트 타입을 변경하게 해주는 함수
     setStyleState(prev => {
       const newState = [...prev]
       newState[index] = {
@@ -48,6 +52,7 @@ export default function StyleCustomFilter(props) {
   }
 
   function submitStye(styleState, closeModalBtn) {
+    // 차트의 속성들을 set해주고 저장해주는 함수, localStorage에 저장 그리고 팝업창 닫음
     const chart = uniqueChartName
     localStorage.setItem(chart, JSON.stringify(styleState))
     closeModalBtn()
@@ -81,7 +86,7 @@ export default function StyleCustomFilter(props) {
               <label className="mr-[15px]">color :</label>
               <select
                 onChange={event =>
-                  updateBorderColor(event.currentTarget.value, index)
+                  updateBackColor(event.currentTarget.value, index)
                 }
               >
                 <option>{colorArr[index].name}</option>
@@ -95,6 +100,7 @@ export default function StyleCustomFilter(props) {
                 })}
               </select>
             </div>
+            {/* type에 mixed라는 단어가 포함되면 차트 타입을 설정할 수 있는 아래와 같은 ui가 보이도록 함 */}
             {type.match('mixed') && (
               <div>
                 <label className="mr-[15px]">chart type :</label>

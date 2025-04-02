@@ -23,6 +23,7 @@ export default function AskChart(props) {
   const { type, data, width, height, uniqueChartName, timePropertyName } = props
 
   const styleDataArr = function () {
+    // 타입에 결정되며, 초기 환경을 설정해주는 함수의 리턴값을 가져옴
     switch (type) {
       case 'line':
         return setInitialLineStyle(data, uniqueChartName, timePropertyName)
@@ -40,8 +41,10 @@ export default function AskChart(props) {
         )
     }
   }
-  const [styleState, setStyleState] = useState(styleDataArr)
+  const [styleState, setStyleState] = useState(styleDataArr) // 위에서 할당한 함수 리턴값을 초기값으로 잡아준다.
 
+  // StyleCustomFilter 컴포넌트에서 수정 및 변경한 값([styleState, setStyleState]) 및 차트에 들어 갈 값을 아래 코드, 변수들에 할당한다.
+  // 그리고 chartUi의 각 컴포넌트에 데이터로 넘겨준다.
   const resultLineData = setLineData(data, styleState, timePropertyName)
   const resultMixedData = setMixedData(data, styleState, timePropertyName)
   const resultBarData = setBarData(data, styleState, timePropertyName)
@@ -60,6 +63,7 @@ export default function AskChart(props) {
   }
 
   const chartUi = function () {
+    // 조건에 따라 차트 컴포넌트를 return 해주는 함수 표현식
     switch (type) {
       case 'line':
         return <LineMain data={resultLineData} width={width} height={height} />

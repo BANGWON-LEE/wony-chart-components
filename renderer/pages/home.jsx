@@ -7,6 +7,8 @@ import { formatData } from '../components/chart/common/common'
 export default function App() {
   const [data, setData] = useState(formatData(dummyData))
 
+  console.log('정렬한 데이터 형식', data)
+
   return (
     <React.Fragment>
       <AskChart
