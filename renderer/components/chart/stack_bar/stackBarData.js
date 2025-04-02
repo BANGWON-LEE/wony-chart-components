@@ -17,8 +17,8 @@ export function setStackBarData(data, styleState) {
       type: 'bar',
       label: line.toString(), //그래프 분류되는 항목
       data: data[line], //실제 그려지는 데이터(Y축 숫자)
-      backgroundColor: styleState[index].backgroundColor, //마우스 호버시 나타나는 분류네모 표시 bg
-      barThickness: styleState[index].barThickness,
+      backgroundColor: styleState?.[index].backgroundColor, //마우스 호버시 나타나는 분류네모 표시 bg
+      barThickness: styleState?.[index].barThickness,
     })),
   }
 }
