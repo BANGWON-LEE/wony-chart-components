@@ -2,7 +2,8 @@ import NumberInput from './style/NumberInput'
 import { colorArr } from './style/styleElement'
 
 export default function StyleCustomFilter(props) {
-  const { styleState, setStyleState, type, closeModalBtn, chartName } = props
+  const { styleState, setStyleState, type, closeModalBtn, uniqueChartName } =
+    props
 
   function updateBorderWidth(event, index) {
     setStyleState(prev => {
@@ -47,12 +48,10 @@ export default function StyleCustomFilter(props) {
   }
 
   function submitStye(styleState, closeModalBtn) {
-    const chartchartName = chartName
-    localStorage.setItem(chartchartName, JSON.stringify(styleState))
+    const chart = uniqueChartName
+    localStorage.setItem(chart, JSON.stringify(styleState))
     closeModalBtn()
   }
-
-  console.log('chartName', chartName)
 
   const chartType = ['line', 'bar']
 
@@ -60,7 +59,7 @@ export default function StyleCustomFilter(props) {
     <div className="fixed inset-0 flex items-center justify-center bg-slate-500 bg-opacity-20">
       <div className="bg-white p-6 rounded-lg shadow-lg w-[70vw]">
         {styleState.map((el, index) => (
-          <div chartName={el.id} className="flex justify-between">
+          <div key={el.id} className="flex justify-between">
             <p className="w-[110px]">{el.name}</p>
             {el.type === 'line' && (
               <NumberInput
@@ -89,7 +88,7 @@ export default function StyleCustomFilter(props) {
                 {/* <option>색상을 선택하세요</option> */}
                 {colorArr.map(el => {
                   return (
-                    <option chartName={el.name} value={el.rgb}>
+                    <option key={el.name} value={el.rgb}>
                       {el.name}
                     </option>
                   )
@@ -108,7 +107,7 @@ export default function StyleCustomFilter(props) {
                   <option disabled>{styleState[index].type}</option>
                   {chartType.map(el => {
                     return (
-                      <option chartName={'chartTypeArr' + el} value={el}>
+                      <option key={'chartTypeArr' + el} value={el}>
                         {el}
                       </option>
                     )
