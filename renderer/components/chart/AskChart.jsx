@@ -16,32 +16,26 @@ import {
 import { formatData } from './common/common'
 
 export default function AskChart(props) {
-  const { type, data, width, height, chartName } = props
-  // console.log('key b', chartName)
-
-  const lineData = formatData(data) // 데이터를 차트에 넣기위 해 정리함
-  const mixiedData = formatData(data) // 데이터를 차트에 넣기위 해 정리함
-  const barData = formatData(data) // 데이터를 차트에 넣기위 해 정리함
-  const stackBarData = formatData(data) // 데이터를 차트에 넣기위 해 정리함
+  const { type, data, width, height, uniqueChartName } = props
 
   const styleDataArr = function () {
     switch (type) {
       case 'line':
-        return setInitialLineStyle(lineData, chartName)
+        return setInitialLineStyle(data, uniqueChartName)
       case 'mixed':
-        return setInitialMixedStyle(mixiedData, chartName)
+        return setInitialMixedStyle(data, uniqueChartName)
       case 'bar':
-        return setInitialBarStyle(barData, chartName)
+        return setInitialBarStyle(data, uniqueChartName)
       case 'stackBar':
-        return setInitialStackBarStyle(stackBarData, chartName)
+        return setInitialStackBarStyle(data, uniqueChartName)
     }
   }
   const [styleState, setStyleState] = useState(styleDataArr)
 
-  const resultLineData = setLineData(lineData, styleState)
-  const resultMixedData = setMixedData(lineData, styleState)
-  const resultBarData = setBarData(lineData, styleState)
-  const resultStackBarData = setStackBarData(lineData, styleState)
+  const resultLineData = setLineData(data, styleState)
+  const resultMixedData = setMixedData(data, styleState)
+  const resultBarData = setBarData(data, styleState)
+  const resultStackBarData = setStackBarData(data, styleState)
 
   const [openCustomFilterModalState, setOpenCustomFilterModalState] =
     useState(false)
@@ -62,7 +56,7 @@ export default function AskChart(props) {
               styleState={styleState}
               setStyleState={setStyleState}
               type={type}
-              chartName={chartName}
+              uniqueChartName={uniqueChartName}
             />
           )}
         </>
@@ -81,6 +75,7 @@ export default function AskChart(props) {
               styleState={styleState}
               setStyleState={setStyleState}
               type={type}
+              uniqueChartName={uniqueChartName}
             />
           )}
         </>
@@ -98,6 +93,7 @@ export default function AskChart(props) {
               styleState={styleState}
               setStyleState={setStyleState}
               type={type}
+              uniqueChartName={uniqueChartName}
             />
           )}
         </>
@@ -119,6 +115,7 @@ export default function AskChart(props) {
               styleState={styleState}
               setStyleState={setStyleState}
               type={type}
+              uniqueChartName={uniqueChartName}
             />
           )}
         </>
