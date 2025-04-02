@@ -1,3 +1,4 @@
+import { getStorage } from '../common/common'
 import { colorArr } from '../style/styleElement'
 
 export function setMixedData(data, styleState) {
@@ -23,7 +24,7 @@ export function setMixedData(data, styleState) {
   }
 }
 
-export function setInitialMixedStyle(lineData) {
+export function setInitialMixedStyle(lineData, uniqueChartName) {
   const timePropertyName = 'time' // api를 통해서 받아오은 시간 값 프로퍼티 명을 입력하세요
   const dataTitle = Object.keys(lineData)
   const notLabelTitleArr = dataTitle.filter(
@@ -36,14 +37,16 @@ export function setInitialMixedStyle(lineData) {
   )
   const mixedType = ['line', ...mixedTypeArr]
 
+  const styleArr = getStorage(uniqueChartName)
+
   const styleStateObjArr = Array.from({ length: sizeLineData }, (_, index) => ({
     id: 'mixed' + index,
     name: notLabelTitleArr[index],
-    borderColor: colorArr[index].rgb, //그래프 선 color
-    backgroundColor: colorArr[index].rgb, //마우스 호버시 나타나는 분류네모 표시 bg
-    borderWidth: 5,
-    barThickness: 55,
-    type: mixedType[index],
+    borderColor: styleArr?.[index].borderColor || colorArr[index].rgb, //그래프 선 color
+    backgroundColor: styleArr?.[index].backgroundColor || colorArr[index].rgb, //마우스 호버시 나타나는 분류네모 표시 bg
+    borderWidth: styleArr?.[index].borderWidth || 5,
+    barThickness: styleArr?.[index].barThickness || 55,
+    type: styleArr?.[index].type || mixedType[index],
   }))
 
   return styleStateObjArr

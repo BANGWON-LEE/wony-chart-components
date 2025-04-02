@@ -1,3 +1,4 @@
+import { getStorage } from '../common/common'
 import { colorArr } from '../style/styleElement'
 
 export function formatBarData(data) {
@@ -33,19 +34,21 @@ export function setBarData(data, styleState) {
   }
 }
 
-export function setInitialBarStyle(lineData) {
+export function setInitialBarStyle(lineData, uniqueChartName) {
   const timePropertyName = 'time' // api를 통해서 받아오은 시간 값 프로퍼티 명을 입력하세요
   const dataTitle = Object.keys(lineData)
   const notLabelTitleArr = dataTitle.filter(
     el => el.toString() !== timePropertyName
   )
 
+  const styleArr = getStorage(uniqueChartName)
+
   const sizeLineData = Object.keys(notLabelTitleArr).length // time을 제외한 속성의 개수
   const styleStateObjArr = Array.from({ length: sizeLineData }, (_, index) => ({
     id: 'bar' + index,
     name: notLabelTitleArr[index],
-    backgroundColor: colorArr[index].rgb, //마우스 호버시 나타나는 분류네모 표시 bg
-    barThickness: 55,
+    backgroundColor: styleArr?.[index].backgroundColor || colorArr[index].rgb, //마우스 호버시 나타나는 분류네모 표시 bg
+    barThickness: styleArr?.[index].barThickness || 55,
     type: 'bar',
   }))
 
