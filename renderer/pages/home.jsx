@@ -37,6 +37,13 @@ export default function App() {
         height={480}
         uniqueChartName={'test4'}
       />
+      <AskChart
+        type="mixedStackBar"
+        data={data}
+        width={1300}
+        height={480}
+        uniqueChartName={'test2M'}
+      />
     </React.Fragment>
   )
 }

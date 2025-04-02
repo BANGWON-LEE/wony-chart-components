@@ -13,7 +13,11 @@ import {
   setInitialStackBarStyle,
   setStackBarData,
 } from './stack_bar/stackBarData'
-import { formatData } from './common/common'
+import {
+  setInitialMixedStackBarStyle,
+  setMixedStackBarData,
+} from './mixed_stack_bar/mixedStackBarData'
+import MixedStackBarMain from './mixed_stack_bar/mixedStackBarMain'
 
 export default function AskChart(props) {
   const { type, data, width, height, uniqueChartName } = props
@@ -28,6 +32,8 @@ export default function AskChart(props) {
         return setInitialBarStyle(data, uniqueChartName)
       case 'stackBar':
         return setInitialStackBarStyle(data, uniqueChartName)
+      case 'mixedStackBar':
+        return setInitialMixedStackBarStyle(data, uniqueChartName)
     }
   }
   const [styleState, setStyleState] = useState(styleDataArr)
@@ -36,6 +42,7 @@ export default function AskChart(props) {
   const resultMixedData = setMixedData(data, styleState)
   const resultBarData = setBarData(data, styleState)
   const resultStackBarData = setStackBarData(data, styleState)
+  const resultMixedStackBarData = setMixedStackBarData(data, styleState)
 
   const [openCustomFilterModalState, setOpenCustomFilterModalState] =
     useState(false)
@@ -103,6 +110,28 @@ export default function AskChart(props) {
         <>
           <StackBarMain
             data={resultStackBarData}
+            width={width}
+            height={height}
+          />
+          <div>
+            <button onClick={() => handleOpenStyleFilterModal()}>open</button>
+          </div>
+          {openCustomFilterModalState && (
+            <StyleCustomFilter
+              closeModalBtn={handleOpenStyleFilterModal}
+              styleState={styleState}
+              setStyleState={setStyleState}
+              type={type}
+              uniqueChartName={uniqueChartName}
+            />
+          )}
+        </>
+      )
+    case 'mixedStackBar':
+      return (
+        <>
+          <MixedStackBarMain
+            data={resultMixedStackBarData}
             width={width}
             height={height}
           />

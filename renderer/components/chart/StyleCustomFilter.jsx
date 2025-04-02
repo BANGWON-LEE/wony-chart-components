@@ -95,7 +95,7 @@ export default function StyleCustomFilter(props) {
                 })}
               </select>
             </div>
-            {type === 'mixed' && (
+            {type.match('mixed') && (
               <div>
                 <label className="mr-[15px]">chart type :</label>
                 <select
@@ -123,7 +123,7 @@ export default function StyleCustomFilter(props) {
             // onClick={() => closeModalBtn()}
             onClick={() => submitStye(styleState, closeModalBtn)}
           >
-            submit
+            OK
           </button>
         </div>
       </div>
