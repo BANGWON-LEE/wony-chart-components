@@ -62,43 +62,29 @@ export default function AskChart(props) {
   const chartUi = function () {
     switch (type) {
       case 'line':
-        return (
-          <>
-            <LineMain data={resultLineData} width={width} height={height} />
-          </>
-        )
+        return <LineMain data={resultLineData} width={width} height={height} />
 
       case 'mixed':
         return (
-          <>
-            <MixedMain data={resultMixedData} width={width} height={height} />
-          </>
+          <MixedMain data={resultMixedData} width={width} height={height} />
         )
       case 'bar':
-        return (
-          <>
-            <BarMain data={resultBarData} width={width} height={height} />
-          </>
-        )
+        return <BarMain data={resultBarData} width={width} height={height} />
       case 'stackBar':
         return (
-          <>
-            <StackBarMain
-              data={resultStackBarData}
-              width={width}
-              height={height}
-            />
-          </>
+          <StackBarMain
+            data={resultStackBarData}
+            width={width}
+            height={height}
+          />
         )
       case 'mixedStackBar':
         return (
-          <>
-            <MixedStackBarMain
-              data={resultMixedStackBarData}
-              width={width}
-              height={height}
-            />
-          </>
+          <MixedStackBarMain
+            data={resultMixedStackBarData}
+            width={width}
+            height={height}
+          />
         )
 
       default:
