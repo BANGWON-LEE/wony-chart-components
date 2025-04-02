@@ -1,5 +1,4 @@
 import { Chart } from 'react-chartjs-2'
-import { setLineData } from './lineData'
 
 export default function LineMain(props) {
   const { data, width, height } = props
