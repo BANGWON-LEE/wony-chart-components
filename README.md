@@ -12,17 +12,17 @@ data만 props로 넘기면 시각화 되는 컴포넌트 개발 프로젝트 (�
 const dummyData = { <br/>
   data: [ <br/>
 &nbsp;&nbsp;    { <br/>
-       &nbsp; &nbsp;&nbsp;&nbsp;time: '2024-03-18 10:00', <br/>
-     &nbsp;&nbsp; &nbsp;&nbsp;temperature: 22.5, <br/>
-    &nbsp; &nbsp; &nbsp;&nbsp;humidity: 55, <br/>
-  &nbsp;   &nbsp; &nbsp;&nbsp;co2: 33, <br/>
-   &nbsp; &nbsp;&nbsp;}, <br/>
-    &nbsp; &nbsp;&nbsp;{ <br/>
-     &nbsp;&nbsp;  &nbsp;&nbsp;time: '2024-03-18 10:01', <br/>
-    &nbsp; &nbsp;  &nbsp;&nbsp;temperature: 22.7, <br/>
-    &nbsp; &nbsp;  &nbsp;&nbsp;humidity: 54, <br/>
-   &nbsp;  &nbsp;  &nbsp;&nbsp;co2: 23, <br/>
-   &nbsp; &nbsp; &nbsp;}, <br/>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;time: '2024-03-18 10:00', <br/>
+      &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;temperature: 22.5, <br/>
+    &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;humidity: 55, <br/>
+   &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;co2: 33, <br/>
+   &nbsp;&nbsp;&nbsp;}, <br/>
+    &nbsp;&nbsp;&nbsp;{ <br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;time: '2024-03-18 10:01', <br/>
+     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;temperature: 22.7, <br/>
+     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;humidity: 54, <br/>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;co2: 23, <br/>
+   &nbsp;&nbsp; &nbsp;}, <br/>
   &nbsp;] <br/>
 } 
 <br/>
