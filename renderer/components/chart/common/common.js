@@ -3,9 +3,7 @@ export function getStorage(chartName) {
 
   const savedChartStyle = JSON.parse(localStorage.getItem(chartName)) || null
 
-  const styleValue = Object.values(savedChartStyle)
-
-  return styleValue
+  return savedChartStyle
 }
 
 export function formatData(data) {
