@@ -1,8 +1,7 @@
 import { getStorage } from '../common/common'
 import { colorArr } from '../style/styleElement'
 
-export function setLineData(data, styleState) {
-  const timePropertyName = 'time' // api를 통해서 받아오은 시간 값 프로퍼티 명을 입력하세요, 시간값 프로퍼티 변경되면 여기도 변경
+export function setLineData(data, styleState, timePropertyName) {
   const labels = data[timePropertyName]
 
   const dataTitle = Object.keys(data)
@@ -23,8 +22,11 @@ export function setLineData(data, styleState) {
   }
 }
 
-export function setInitialLineStyle(lineData, uniqueChartName) {
-  const timePropertyName = 'time' // api를 통해서 받아오은 시간 값 프로퍼티 명을 입력하세요
+export function setInitialLineStyle(
+  lineData,
+  uniqueChartName,
+  timePropertyName
+) {
   const dataTitle = Object.keys(lineData)
   const notLabelTitleArr = dataTitle.filter(
     el => el.toString() !== timePropertyName

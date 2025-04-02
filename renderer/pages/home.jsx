@@ -15,6 +15,7 @@ export default function App() {
         width={1300}
         height={480}
         uniqueChartName={'test1'}
+        timePropertyName={'time'}
       />
       <AskChart
         type="mixed"
@@ -22,6 +23,7 @@ export default function App() {
         width={1300}
         height={480}
         uniqueChartName={'test2'}
+        timePropertyName={'time'}
       />
       <AskChart
         type="bar"
@@ -29,6 +31,7 @@ export default function App() {
         width={1300}
         height={480}
         uniqueChartName={'test3'}
+        timePropertyName={'time'}
       />
       <AskChart
         type="stackBar"
@@ -36,6 +39,7 @@ export default function App() {
         width={1300}
         height={480}
         uniqueChartName={'test4'}
+        timePropertyName={'time'}
       />
       <AskChart
         type="mixedStackBar"
@@ -43,6 +47,7 @@ export default function App() {
         width={1300}
         height={480}
         uniqueChartName={'test2M'}
+        timePropertyName={'time'}
       />
     </React.Fragment>
   )

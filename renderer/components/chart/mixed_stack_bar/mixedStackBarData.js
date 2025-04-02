@@ -1,9 +1,7 @@
 import { getStorage } from '../common/common'
 import { colorArr } from '../style/styleElement'
 
-export function setMixedStackBarData(data, styleState) {
-  const timePropertyName = 'time' // api를 통해서 받아오은 시간 값 프로퍼티 명을 입력하세요
-
+export function setMixedStackBarData(data, styleState, timePropertyName) {
   const labels = data[timePropertyName]
 
   const dataTitle = Object.keys(data)
@@ -25,8 +23,11 @@ export function setMixedStackBarData(data, styleState) {
   }
 }
 
-export function setInitialMixedStackBarStyle(lineData, uniqueChartName) {
-  const timePropertyName = 'time' // api를 통해서 받아오은 시간 값 프로퍼티 명을 입력하세요
+export function setInitialMixedStackBarStyle(
+  lineData,
+  uniqueChartName,
+  timePropertyName
+) {
   const dataTitle = Object.keys(lineData)
   const notLabelTitleArr = dataTitle.filter(
     el => el.toString() !== timePropertyName

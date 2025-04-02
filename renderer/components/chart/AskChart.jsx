@@ -20,29 +20,37 @@ import {
 import MixedStackBarMain from './mixed_stack_bar/mixedStackBarMain'
 
 export default function AskChart(props) {
-  const { type, data, width, height, uniqueChartName } = props
+  const { type, data, width, height, uniqueChartName, timePropertyName } = props
 
   const styleDataArr = function () {
     switch (type) {
       case 'line':
-        return setInitialLineStyle(data, uniqueChartName)
+        return setInitialLineStyle(data, uniqueChartName, timePropertyName)
       case 'mixed':
-        return setInitialMixedStyle(data, uniqueChartName)
+        return setInitialMixedStyle(data, uniqueChartName, timePropertyName)
       case 'bar':
-        return setInitialBarStyle(data, uniqueChartName)
+        return setInitialBarStyle(data, uniqueChartName, timePropertyName)
       case 'stackBar':
-        return setInitialStackBarStyle(data, uniqueChartName)
+        return setInitialStackBarStyle(data, uniqueChartName, timePropertyName)
       case 'mixedStackBar':
-        return setInitialMixedStackBarStyle(data, uniqueChartName)
+        return setInitialMixedStackBarStyle(
+          data,
+          uniqueChartName,
+          timePropertyName
+        )
     }
   }
   const [styleState, setStyleState] = useState(styleDataArr)
 
-  const resultLineData = setLineData(data, styleState)
-  const resultMixedData = setMixedData(data, styleState)
-  const resultBarData = setBarData(data, styleState)
-  const resultStackBarData = setStackBarData(data, styleState)
-  const resultMixedStackBarData = setMixedStackBarData(data, styleState)
+  const resultLineData = setLineData(data, styleState, timePropertyName)
+  const resultMixedData = setMixedData(data, styleState, timePropertyName)
+  const resultBarData = setBarData(data, styleState, timePropertyName)
+  const resultStackBarData = setStackBarData(data, styleState, timePropertyName)
+  const resultMixedStackBarData = setMixedStackBarData(
+    data,
+    styleState,
+    timePropertyName
+  )
 
   const [openCustomFilterModalState, setOpenCustomFilterModalState] =
     useState(false)
