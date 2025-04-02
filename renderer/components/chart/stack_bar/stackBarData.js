@@ -1,17 +1,5 @@
 import { colorArr } from '../style/styleElement'
 
-export function formatStackBarData(data) {
-  const result = data.data.reduce((acc, obj) => {
-    Object.keys(obj).forEach(key => {
-      acc[key] = acc[key] || []
-      acc[key].push(obj[key])
-    })
-    return acc
-  }, {})
-
-  return result
-}
-
 export function setStackBarData(data, styleState) {
   const timePropertyName = 'time' // api를 통해서 받아오은 시간 값 프로퍼티 명을 입력하세요
 

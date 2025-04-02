@@ -1,19 +1,8 @@
+import { getStorage } from '../common/common'
 import { colorArr } from '../style/styleElement'
 
-export function formatLineData(data) {
-  const result = data.data.reduce((acc, obj) => {
-    Object.keys(obj).forEach(key => {
-      acc[key] = acc[key] || []
-      acc[key].push(obj[key])
-    })
-    return acc
-  }, {})
-
-  return result
-}
-
 export function setLineData(data, styleState) {
-  const timePropertyName = 'time' // api를 통해서 받아오은 시간 값 프로퍼티 명을 입력하세요
+  const timePropertyName = 'time' // api를 통해서 받아오은 시간 값 프로퍼티 명을 입력하세요, 시간값 프로퍼티 변경되면 여기도 변경
   const labels = data[timePropertyName]
 
   const dataTitle = Object.keys(data)
@@ -34,22 +23,23 @@ export function setLineData(data, styleState) {
   }
 }
 
-export function setInitialLineStyle(lineData) {
+export function setInitialLineStyle(lineData, chartName) {
   const timePropertyName = 'time' // api를 통해서 받아오은 시간 값 프로퍼티 명을 입력하세요
   const dataTitle = Object.keys(lineData)
   const notLabelTitleArr = dataTitle.filter(
     el => el.toString() !== timePropertyName
   )
 
+  const styleArr = getStorage(chartName)
+
   const sizeLineData = Object.keys(notLabelTitleArr).length // time을 제외한 속성의 개수
   const styleStateObjArr = Array.from({ length: sizeLineData }, (_, index) => ({
     id: 'line' + index,
     name: notLabelTitleArr[index],
-    borderColor: colorArr[index].rgb, //그래프 선 color
-    backgroundColor: colorArr[index].rgb, //마우스 호버시 나타나는 분류네모 표시 bg
-    borderWidth: 5,
+    borderColor: styleArr?.[index].borderColor || colorArr[index].rgb, //그래프 선 color
+    backgroundColor: styleArr?.[index].backgroundColor || colorArr[index].rgb, //마우스 호버시 나타나는 분류네모 표시 bg
+    borderWidth: styleArr?.[index].borderWidth || 5,
     type: 'line',
   }))
-
   return styleStateObjArr
 }
