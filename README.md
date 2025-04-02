@@ -11,19 +11,19 @@ data만 props로 넘기면 시각화 되는 컴포넌트 개발 프로젝트 (�
   <br/>
 const dummyData = { <br/>
   data: [ <br/>
-    { <br/>
-      time: '2024-03-18 10:00', <br/>
-      temperature: 22.5, <br/>
-      humidity: 55, <br/>
-      co2: 33, <br/>
-    }, <br/>
-    { <br/>
-      time: '2024-03-18 10:01', <br/>
-      temperature: 22.7, <br/>
-      humidity: 54, <br/>
-      co2: 23, <br/>
-    }, <br/>
-  ] <br/>
+&nbsp;&nbsp;    { <br/>
+      &nbsp;&nbsp;&nbsp;time: '2024-03-18 10:00', <br/>
+     &nbsp; &nbsp;&nbsp;temperature: 22.5, <br/>
+     &nbsp; &nbsp;&nbsp;humidity: 55, <br/>
+     &nbsp; &nbsp;&nbsp;co2: 33, <br/>
+    &nbsp;&nbsp;}, <br/>
+    &nbsp;&nbsp;{ <br/>
+    &nbsp;  &nbsp;&nbsp;time: '2024-03-18 10:01', <br/>
+    &nbsp;  &nbsp;&nbsp;temperature: 22.7, <br/>
+    &nbsp;  &nbsp;&nbsp;humidity: 54, <br/>
+    &nbsp;  &nbsp;&nbsp;co2: 23, <br/>
+   &nbsp; &nbsp;}, <br/>
+  &nbsp;] <br/>
 } 
 <br/>
 
