@@ -59,106 +59,66 @@ export default function AskChart(props) {
     setOpenCustomFilterModalState(!openCustomFilterModalState)
   }
 
-  switch (type) {
-    case 'line':
-      return (
-        <>
-          <LineMain data={resultLineData} width={width} height={height} />
-          <button onClick={() => handleOpenStyleFilterModal()}>open</button>
-          {openCustomFilterModalState && (
-            <StyleCustomFilter
-              closeModalBtn={handleOpenStyleFilterModal}
-              styleState={styleState}
-              setStyleState={setStyleState}
-              type={type}
-              uniqueChartName={uniqueChartName}
-            />
-          )}
-        </>
-      )
+  const chartUi = function () {
+    switch (type) {
+      case 'line':
+        return (
+          <>
+            <LineMain data={resultLineData} width={width} height={height} />
+          </>
+        )
 
-    case 'mixed':
-      return (
-        <>
-          <MixedMain data={resultMixedData} width={width} height={height} />
-          <div>
-            <button onClick={() => handleOpenStyleFilterModal()}>open</button>
-          </div>
-          {openCustomFilterModalState && (
-            <StyleCustomFilter
-              closeModalBtn={handleOpenStyleFilterModal}
-              styleState={styleState}
-              setStyleState={setStyleState}
-              type={type}
-              uniqueChartName={uniqueChartName}
+      case 'mixed':
+        return (
+          <>
+            <MixedMain data={resultMixedData} width={width} height={height} />
+          </>
+        )
+      case 'bar':
+        return (
+          <>
+            <BarMain data={resultBarData} width={width} height={height} />
+          </>
+        )
+      case 'stackBar':
+        return (
+          <>
+            <StackBarMain
+              data={resultStackBarData}
+              width={width}
+              height={height}
             />
-          )}
-        </>
-      )
-    case 'bar':
-      return (
-        <>
-          <BarMain data={resultBarData} width={width} height={height} />
-          <div>
-            <button onClick={() => handleOpenStyleFilterModal()}>open</button>
-          </div>
-          {openCustomFilterModalState && (
-            <StyleCustomFilter
-              closeModalBtn={handleOpenStyleFilterModal}
-              styleState={styleState}
-              setStyleState={setStyleState}
-              type={type}
-              uniqueChartName={uniqueChartName}
+          </>
+        )
+      case 'mixedStackBar':
+        return (
+          <>
+            <MixedStackBarMain
+              data={resultMixedStackBarData}
+              width={width}
+              height={height}
             />
-          )}
-        </>
-      )
-    case 'stackBar':
-      return (
-        <>
-          <StackBarMain
-            data={resultStackBarData}
-            width={width}
-            height={height}
-          />
-          <div>
-            <button onClick={() => handleOpenStyleFilterModal()}>open</button>
-          </div>
-          {openCustomFilterModalState && (
-            <StyleCustomFilter
-              closeModalBtn={handleOpenStyleFilterModal}
-              styleState={styleState}
-              setStyleState={setStyleState}
-              type={type}
-              uniqueChartName={uniqueChartName}
-            />
-          )}
-        </>
-      )
-    case 'mixedStackBar':
-      return (
-        <>
-          <MixedStackBarMain
-            data={resultMixedStackBarData}
-            width={width}
-            height={height}
-          />
-          <div>
-            <button onClick={() => handleOpenStyleFilterModal()}>open</button>
-          </div>
-          {openCustomFilterModalState && (
-            <StyleCustomFilter
-              closeModalBtn={handleOpenStyleFilterModal}
-              styleState={styleState}
-              setStyleState={setStyleState}
-              type={type}
-              uniqueChartName={uniqueChartName}
-            />
-          )}
-        </>
-      )
+          </>
+        )
 
-    default:
-      return <div>차트를 선택해주세요</div>
+      default:
+        return <div>차트를 선택해주세요</div>
+    }
   }
+
+  return (
+    <>
+      {chartUi()}
+      <button onClick={() => handleOpenStyleFilterModal()}>open</button>
+      {openCustomFilterModalState && (
+        <StyleCustomFilter
+          closeModalBtn={handleOpenStyleFilterModal}
+          styleState={styleState}
+          setStyleState={setStyleState}
+          type={type}
+          uniqueChartName={uniqueChartName}
+        />
+      )}
+    </>
+  )
 }
