@@ -2,7 +2,7 @@ import NumberInput from './style/NumberInput'
 import { colorArr } from './style/styleElement'
 
 export default function StyleCustomFilter(props) {
-  const { styleState, setStyleState, type, closeModalBtn } = props
+  const { styleState, setStyleState, type, closeModalBtn, chartName } = props
 
   function updateBorderWidth(event, index) {
     setStyleState(prev => {
@@ -46,13 +46,21 @@ export default function StyleCustomFilter(props) {
     })
   }
 
+  function submitStye(styleState, closeModalBtn) {
+    const chartchartName = chartName
+    localStorage.setItem(chartchartName, JSON.stringify(styleState))
+    closeModalBtn()
+  }
+
+  console.log('chartName', chartName)
+
   const chartType = ['line', 'bar']
 
   return (
     <div className="fixed inset-0 flex items-center justify-center bg-slate-500 bg-opacity-20">
       <div className="bg-white p-6 rounded-lg shadow-lg w-[70vw]">
         {styleState.map((el, index) => (
-          <div key={el.id} className="flex justify-between">
+          <div chartName={el.id} className="flex justify-between">
             <p className="w-[110px]">{el.name}</p>
             {el.type === 'line' && (
               <NumberInput
@@ -77,10 +85,11 @@ export default function StyleCustomFilter(props) {
                   updateBorderColor(event.currentTarget.value, index)
                 }
               >
-                <option>색상을 선택하세요</option>
+                <option>{colorArr[index].name}</option>
+                {/* <option>색상을 선택하세요</option> */}
                 {colorArr.map(el => {
                   return (
-                    <option key={el.name} value={el.rgb}>
+                    <option chartName={el.name} value={el.rgb}>
                       {el.name}
                     </option>
                   )
@@ -99,7 +108,7 @@ export default function StyleCustomFilter(props) {
                   <option disabled>{styleState[index].type}</option>
                   {chartType.map(el => {
                     return (
-                      <option key={'chartTypeArr' + el} value={el}>
+                      <option chartName={'chartTypeArr' + el} value={el}>
                         {el}
                       </option>
                     )
@@ -112,9 +121,10 @@ export default function StyleCustomFilter(props) {
         <div className="w-full text-center mt-6">
           <button
             className="px-4 py-2 rounded-md bg-blue-400 text-white font-semibold "
-            onClick={() => closeModalBtn()}
+            // onClick={() => closeModalBtn()}
+            onClick={() => submitStye(styleState, closeModalBtn)}
           >
-            닫기
+            submit
           </button>
         </div>
       </div>
