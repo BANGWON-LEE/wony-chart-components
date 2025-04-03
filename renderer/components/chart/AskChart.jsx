@@ -41,7 +41,8 @@ export default function AskChart(props) {
         )
     }
   }
-  const [styleState, setStyleState] = useState(styleDataArr) // 위에서 할당한 함수 리턴값을 초기값으로 잡아준다.
+
+  const [styleState, setStyleState] = useState(styleDataArr()) // 위에서 할당한 함수 리턴값을 초기값으로 잡아준다.
 
   // StyleCustomFilter 컴포넌트에서 수정 및 변경한 값([styleState, setStyleState]) 및 차트에 들어 갈 값을 아래 코드, 변수들에 할당한다.
   // 그리고 chartUi의 각 컴포넌트에 데이터로 넘겨준다.
