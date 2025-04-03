@@ -99,8 +99,8 @@ export default function AskChart(props) {
 
   return (
     <>
-      {chartUi()}
       <button onClick={() => handleOpenStyleFilterModal()}>open</button>
+      {chartUi()}
       {openCustomFilterModalState && (
         <StyleCustomFilter
           closeModalBtn={handleOpenStyleFilterModal}
