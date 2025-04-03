@@ -14,7 +14,7 @@ export function getStorage(uniqueChartName) {
 }
 
 export function formatData(data) {
-  const result = data.data.reduce((acc, obj) => {
+  const result = data.reduce((acc, obj) => {
     Object.keys(obj).forEach(key => {
       acc[key] = acc[key] || []
       acc[key].push(obj[key])
