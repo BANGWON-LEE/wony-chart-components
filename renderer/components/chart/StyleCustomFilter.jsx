@@ -15,7 +15,7 @@ export default function StyleCustomFilter(props) {
   }
 
   function updateBackColor(event, index) {
-    // border와 bar color 값 조절하는 함수 (line)
+    // border와 bar의 color 값 조절하는 함수 (line)
     setStyleState(prev => {
       const newState = [...prev]
       newState[index] = {
@@ -54,7 +54,7 @@ export default function StyleCustomFilter(props) {
   function submitStye(styleState, closeModalBtn) {
     // 차트의 속성들을 set해주고 저장해주는 함수, localStorage에 저장 그리고 팝업창 닫음
     const chart = uniqueChartName
-    localStorage.setItem(chart, JSON.stringify(styleState))
+    localStorage.setItem('chart', JSON.stringify(styleState))
     closeModalBtn()
   }
 
