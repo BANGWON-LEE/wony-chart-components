@@ -1,4 +1,5 @@
 import { getStorage } from '../common/common'
+import { initialBarThickness } from '../common/initialStyle'
 import { colorArr } from '../style/styleElement'
 
 export function setStackBarData(data, styleState, timePropertyName) {
@@ -38,7 +39,7 @@ export function setInitialStackBarStyle(
     id: 'bar' + index,
     name: notLabelTitleArr[index],
     backgroundColor: styleArr?.[index].backgroundColor || colorArr[index].rgb, //마우스 호버시 나타나는 분류네모 표시 bg
-    barThickness: styleArr?.[index].barThickness || 55,
+    barThickness: styleArr?.[index].barThickness || initialBarThickness,
     type: 'bar',
   }))
 

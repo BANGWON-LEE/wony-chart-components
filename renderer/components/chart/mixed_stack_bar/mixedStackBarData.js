@@ -1,4 +1,5 @@
 import { getStorage } from '../common/common'
+import { initialBarThickness } from '../common/initialStyle'
 import { colorArr } from '../style/styleElement'
 
 export function setMixedStackBarData(data, styleState, timePropertyName) {
@@ -49,7 +50,7 @@ export function setInitialMixedStackBarStyle(
     borderColor: styleArr?.[index].borderColor || colorArr[index].rgb, //그래프 선 color
     backgroundColor: styleArr?.[index].backgroundColor || colorArr[index].rgb, //마우스 호버시 나타나는 분류네모 표시 bg
     borderWidth: styleArr?.[index].borderWidth || 5,
-    barThickness: styleArr?.[index].barThickness || 55,
+    barThickness: styleArr?.[index].barThickness || initialBarThickness,
     type: styleArr?.[index].type || mixedType[index],
   }))
 

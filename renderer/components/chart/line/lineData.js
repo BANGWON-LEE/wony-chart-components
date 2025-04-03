@@ -1,4 +1,5 @@
 import { getStorage } from '../common/common'
+import { initialLineWidth } from '../common/initialStyle'
 import { colorArr } from '../style/styleElement'
 
 export function setLineData(data, styleState, timePropertyName) {
@@ -40,7 +41,7 @@ export function setInitialLineStyle(
     name: notLabelTitleArr[index],
     borderColor: styleArr?.[index].borderColor || colorArr[index].rgb, //그래프 선 color
     backgroundColor: styleArr?.[index].backgroundColor || colorArr[index].rgb, //마우스 호버시 나타나는 분류네모 표시 bg
-    borderWidth: styleArr?.[index].borderWidth || 5,
+    borderWidth: styleArr?.[index].borderWidth || initialLineWidth,
     type: 'line',
   }))
   return styleStateObjArr
