@@ -1,7 +1,8 @@
-export function getStorage(chartName) {
+export function getStorage(uniqueChartName) {
   if (typeof window === 'undefined') return
 
-  const savedChartStyle = JSON.parse(localStorage.getItem(chartName)) || null
+  const savedChartStyle =
+    JSON.parse(localStorage.getItem(uniqueChartName)) || null
 
   return savedChartStyle
 }
