@@ -1,11 +1,12 @@
 import React, { useState } from 'react'
-import { dummyData } from '../data/dummy'
+import { dummyData, generateDataArray } from '../data/dummy'
 import AskChart from '../components/chart/AskChart'
 import { formatData } from '../components/chart/common/common'
 // import '../global.css'
 
 export default function App() {
-  const [data, setData] = useState(formatData(dummyData))
+  const manyDummyData = generateDataArray()
+  const [data, setData] = useState(formatData(manyDummyData))
 
   console.log('정렬한 데이터 형식', data)
 
@@ -14,7 +15,7 @@ export default function App() {
       <AskChart
         type="line"
         data={data}
-        width={1300}
+        width={1700}
         height={480}
         uniqueChartName={'test1'}
         timePropertyName={'time'}
@@ -22,7 +23,7 @@ export default function App() {
       <AskChart
         type="mixed"
         data={data}
-        width={1300}
+        width={1700}
         height={480}
         uniqueChartName={'test2'}
         timePropertyName={'time'}
@@ -30,7 +31,7 @@ export default function App() {
       <AskChart
         type="bar"
         data={data}
-        width={1300}
+        width={1700}
         height={480}
         uniqueChartName={'test3'}
         timePropertyName={'time'}
@@ -38,7 +39,7 @@ export default function App() {
       <AskChart
         type="stackBar"
         data={data}
-        width={1300}
+        width={1700}
         height={480}
         uniqueChartName={'test4'}
         timePropertyName={'time'}
@@ -46,9 +47,9 @@ export default function App() {
       <AskChart
         type="mixedStackBar"
         data={data}
-        width={1300}
+        width={1700}
         height={480}
-        uniqueChartName={'test2M'}
+        uniqueChartName={'test2S'}
         timePropertyName={'time'}
       />
     </React.Fragment>
