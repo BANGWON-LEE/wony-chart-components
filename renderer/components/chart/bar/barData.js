@@ -1,8 +1,8 @@
 import { getStorage } from '../common/common'
+import { initialBarThickness } from '../common/initialStyle'
 import { colorArr } from '../style/styleElement'
 
-export function setBarData(data, styleState) {
-  const timePropertyName = 'time' // api를 통해서 받아오은 시간 값 프로퍼티 명을 입력하세요
+export function setBarData(data, styleState, timePropertyName) {
   const labels = data[timePropertyName]
 
   const dataTitle = Object.keys(data)
@@ -25,8 +25,11 @@ export function setBarData(data, styleState) {
   }
 }
 
-export function setInitialBarStyle(lineData, uniqueChartName) {
-  const timePropertyName = 'time' // api를 통해서 받아오은 시간 값 프로퍼티 명을 입력하세요
+export function setInitialBarStyle(
+  lineData,
+  uniqueChartName,
+  timePropertyName
+) {
   const dataTitle = Object.keys(lineData)
   const notLabelTitleArr = dataTitle.filter(
     el => el.toString() !== timePropertyName
@@ -39,7 +42,7 @@ export function setInitialBarStyle(lineData, uniqueChartName) {
     id: 'bar' + index,
     name: notLabelTitleArr[index],
     backgroundColor: styleArr?.[index].backgroundColor || colorArr[index].rgb, //마우스 호버시 나타나는 분류네모 표시 bg
-    barThickness: styleArr?.[index].barThickness || 55,
+    barThickness: styleArr?.[index].barThickness || initialBarThickness,
     borderRadius: 10,
     type: 'bar',
   }))
