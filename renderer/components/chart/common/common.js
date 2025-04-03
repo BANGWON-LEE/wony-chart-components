@@ -1,10 +1,16 @@
+export function getAllStorage() {
+  if (typeof window === 'undefined') return
+
+  const savedChartStyle = JSON.parse(localStorage.getItem('askChart')) || null
+
+  return savedChartStyle
+}
 export function getStorage(uniqueChartName) {
   if (typeof window === 'undefined') return
 
-  const savedChartStyle =
-    JSON.parse(localStorage.getItem(uniqueChartName)) || null
+  const savedChartStyle = JSON.parse(localStorage.getItem('askChart')) || null
 
-  return savedChartStyle
+  return savedChartStyle?.[uniqueChartName]
 }
 
 export function formatData(data) {
