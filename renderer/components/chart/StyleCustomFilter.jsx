@@ -1,3 +1,4 @@
+import { getAllStorage } from './common/common'
 import NumberInput from './style/NumberInput'
 import { colorArr } from './style/styleElement'
 
@@ -51,10 +52,13 @@ export default function StyleCustomFilter(props) {
     })
   }
 
-  function submitStye(styleState, closeModalBtn) {
+  function submitStyle(styleState, closeModalBtn) {
     // 차트의 속성들을 set해주고 저장해주는 함수, localStorage에 저장 그리고 팝업창 닫음
-    const chart = uniqueChartName
-    localStorage.setItem(chart, JSON.stringify(styleState))
+    const allChartStyle = getAllStorage()
+    const currentChartStyleObj = { [uniqueChartName]: styleState }
+    const finalArr = { ...allChartStyle, ...currentChartStyleObj }
+
+    localStorage.setItem('askChart', JSON.stringify(finalArr))
     closeModalBtn()
   }
 
@@ -127,7 +131,7 @@ export default function StyleCustomFilter(props) {
           <button
             className="px-4 py-2 rounded-md bg-blue-400 text-white font-semibold "
             // onClick={() => closeModalBtn()}
-            onClick={() => submitStye(styleState, closeModalBtn)}
+            onClick={() => submitStyle(styleState, closeModalBtn)}
           >
             OK
           </button>
