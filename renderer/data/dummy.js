@@ -5,7 +5,7 @@ export function generateDataArray(length = 30) {
 
   for (let i = 0; i < length; i++) {
     const time = new Date()
-    time.setMinutes(time.getMinutes() - i * 10) // 10분 간격 데이터
+    time.setMinutes(time.getMinutes() + i * 10) // 10분 간격 데이터
 
     dataArray.push({
       time: time.toISOString().slice(0, 16).replace('T', ' '), // 시간 형식: 'YYYY-MM-DD HH:MM'
