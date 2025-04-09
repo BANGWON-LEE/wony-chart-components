@@ -19,6 +19,7 @@ export function setMixedStackBarData(data, styleState, timePropertyName) {
       borderColor: styleState?.[index].borderColor, //그래프 선 color
       backgroundColor: styleState?.[index].backgroundColor, //마우스 호버시 나타나는 분류네모 표시 bg
       borderWidth: styleState?.[index].borderWidth,
+      borderRadius: styleState?.[index].borderRadius,
       barThickness: styleState?.[index].barThickness,
     })),
   }
@@ -51,6 +52,7 @@ export function setInitialMixedStackBarStyle(
     backgroundColor: styleArr?.[index].backgroundColor || colorArr[index].rgb, //마우스 호버시 나타나는 분류네모 표시 bg
     borderWidth: styleArr?.[index].borderWidth || 5,
     barThickness: styleArr?.[index].barThickness || initialBarThickness,
+    borderRadius: 10,
     type: styleArr?.[index].type || mixedType[index],
   }))
 
