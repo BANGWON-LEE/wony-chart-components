@@ -18,8 +18,6 @@ export function generateDataArray(length = 30) {
   return dataArray
 }
 
-console.log(generateDataArray())
-
 export const dummyData = {
   data: [
     {
