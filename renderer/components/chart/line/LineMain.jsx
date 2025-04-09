@@ -1,11 +1,29 @@
 import { Chart } from 'react-chartjs-2'
+import zoomPlugin from 'chartjs-plugin-zoom'
 
 export default function LineMain(props) {
   const { data, width, height } = props
 
+  const zoomOptions = {
+    pan: {
+      enabled: true,
+      mode: 'x',
+    },
+    zoom: {
+      wheel: {
+        enabled: true,
+      },
+      pinch: {
+        enabled: true,
+      },
+      mode: 'x',
+    },
+  }
+
   const options = {
     responsive: false,
     plugins: {
+      zoom: zoomOptions,
       legend: {
         position: 'bottom',
       },
