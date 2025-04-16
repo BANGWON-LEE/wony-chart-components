@@ -8,7 +8,7 @@ export default function NumberInput(props) {
         type="number"
         className="w-[70px]"
         defaultValue={defaultValue}
-        onChange={event => onChange(event.currentTarget.value, index)}
+        onChange={event => onChange(event.currentTarget.value, index || null)}
       />
     </div>
   )

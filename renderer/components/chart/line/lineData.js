@@ -1,5 +1,5 @@
 import { getStorage } from '../common/common'
-import { initialLineWidth } from '../common/initialStyle'
+import { initialLineWidth, initialMaxTicksLimit } from '../common/initialStyle'
 import { colorArr } from '../style/styleElement'
 
 export function setLineData(data, styleState, timePropertyName) {
@@ -9,6 +9,8 @@ export function setLineData(data, styleState, timePropertyName) {
   const notLabelTitleArr = dataTitle.filter(
     el => el.toString() !== timePropertyName
   )
+
+  console.log('styleSEt', styleState)
 
   return {
     labels,
@@ -35,6 +37,8 @@ export function setInitialLineStyle(
 
   const styleArr = getStorage(uniqueChartName)
 
+  console.log('styleARr', styleArr)
+
   const sizeLineData = Object.keys(notLabelTitleArr).length // time을 제외한 속성의 개수
   const styleStateObjArr = Array.from({ length: sizeLineData }, (_, index) => ({
     id: 'line' + index,
@@ -45,4 +49,112 @@ export function setInitialLineStyle(
     type: 'line',
   }))
   return styleStateObjArr
+}
+
+export function setOptionLineData(chartOptionState) {
+  const zoomOptions = {
+    pan: {
+      enabled: true,
+      mode: 'x',
+    },
+    zoom: {
+      wheel: {
+        enabled: true,
+      },
+      pinch: {
+        enabled: true,
+      },
+      mode: 'x',
+    },
+  }
+
+  const options = {
+    responsive: false,
+    plugins: {
+      zoom: zoomOptions,
+      legend: {
+        position: 'bottom',
+      },
+      title: {
+        display: true,
+        position: 'top',
+        text: 'Chart.js Line Chart',
+      },
+    },
+    scales: {
+      x: {
+        border: {
+          dash: [7, 9],
+        },
+        ticks: {
+          maxTicksLimit:
+            chartOptionState?.scales.x.ticks.maxTicksLimit ||
+            initialMaxTicksLimit,
+        },
+      },
+      y: {
+        grid: {
+          display: false,
+        },
+      },
+    },
+  }
+
+  return options
+}
+
+export function setInitialOption(uniqueChartName) {
+  const optionUniqueChartName = uniqueChartName + 'Option'
+  const styleArr = getStorage(optionUniqueChartName)
+
+  console.log('styleARr', styleArr?.scales.x.ticks.maxTicksLimit)
+
+  const zoomOptions = {
+    pan: {
+      enabled: true,
+      mode: 'x',
+    },
+    zoom: {
+      wheel: {
+        enabled: true,
+      },
+      pinch: {
+        enabled: true,
+      },
+      mode: 'x',
+    },
+  }
+
+  const options = {
+    responsive: false,
+    plugins: {
+      zoom: zoomOptions,
+      legend: {
+        position: 'bottom',
+      },
+      title: {
+        display: true,
+        position: 'top',
+        text: 'Chart.js Line Chart',
+      },
+    },
+    scales: {
+      x: {
+        border: {
+          dash: [7, 9],
+        },
+        ticks: {
+          maxTicksLimit:
+            styleArr?.scales.x.ticks.maxTicksLimit || initialMaxTicksLimit,
+        },
+      },
+      y: {
+        grid: {
+          display: false,
+        },
+      },
+    },
+  }
+
+  return options
 }

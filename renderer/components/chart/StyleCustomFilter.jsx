@@ -3,8 +3,15 @@ import NumberInput from './style/NumberInput'
 import { colorArr } from './style/styleElement'
 
 export default function StyleCustomFilter(props) {
-  const { styleState, setStyleState, type, closeModalBtn, uniqueChartName } =
-    props
+  const {
+    styleState,
+    setStyleState,
+    chartOptionState,
+    setChartOptionState,
+    type,
+    closeModalBtn,
+    uniqueChartName,
+  } = props
 
   function updateBorderWidth(event, index) {
     // border width 값 조절하는 함수 (line)
@@ -40,6 +47,17 @@ export default function StyleCustomFilter(props) {
     })
   }
 
+  console.log('xxxC', chartOptionState)
+
+  function updateMaxTicksLimit(event) {
+    setChartOptionState(prev => {
+      const newState = { ...prev }
+      newState.scales.x.ticks.maxTicksLimit = Number(event)
+      console.log('fffffqqqq', newState)
+      return newState
+    })
+  }
+
   function changeChartTypeInMixed(event, index) {
     // 차트 타입을 변경하게 해주는 함수
     setStyleState(prev => {
@@ -56,13 +74,23 @@ export default function StyleCustomFilter(props) {
     // 차트의 속성들을 set해주고 저장해주는 함수, localStorage에 저장 그리고 팝업창 닫음
     const allChartStyle = getAllStorage()
     const currentChartStyleObj = { [uniqueChartName]: styleState }
-    const finalArr = { ...allChartStyle, ...currentChartStyleObj }
+    const uniqueChartOptionName = uniqueChartName + 'Option'
+    const currentChartOptionObj = {
+      [uniqueChartOptionName]: chartOptionState,
+    }
+    const finalArr = {
+      ...allChartStyle,
+      ...currentChartStyleObj,
+      ...currentChartOptionObj,
+    }
 
     localStorage.setItem('askChart', JSON.stringify(finalArr))
     closeModalBtn()
   }
 
   const chartType = ['line', 'bar']
+
+  console.log('styleStatestyleState', styleState)
 
   return (
     <div className="fixed inset-0 flex items-center justify-center bg-slate-500 bg-opacity-20">
@@ -127,6 +155,14 @@ export default function StyleCustomFilter(props) {
             )}
           </div>
         ))}
+        <div className="text-center mt-8">
+          <NumberInput
+            title={'maxTicksLimit'}
+            defaultValue={chartOptionState.scales.x.ticks.maxTicksLimit}
+            onChange={updateMaxTicksLimit}
+            index={null}
+          />
+        </div>
         <div className="w-full text-center mt-6">
           <button
             className="px-4 py-2 rounded-md bg-blue-400 text-white font-semibold "
