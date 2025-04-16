@@ -30,3 +30,4 @@ const dummyData = { <br/>
 < 현재 작업 상황 >
 
 - 차트 종류를 늘려가면서, 불필요한 코드 및 중복처리 해야 할 코드 적용 중
+- 차트 options에 maxTicksLimit는 커스텀 할 수 있도록 코드 추가작업 진행 중, options 또한 스타일처럼 관리하도록 로직 변경
