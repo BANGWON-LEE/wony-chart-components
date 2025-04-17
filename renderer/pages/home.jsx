@@ -29,16 +29,6 @@ export default function App() {
           timePropertyName={'time'}
         />
       </div>
-      <div style={{ margin: '210px 0px', overflow: 'scroll' }}>
-        <AskChart
-          type="line"
-          data={data}
-          width={1700}
-          height={480}
-          uniqueChartName={'test13'}
-          timePropertyName={'time'}
-        />
-      </div>
       <div style={{ margin: '210px 0px' }}>
         <AskChart
           type="mixed"
@@ -69,7 +59,8 @@ export default function App() {
           timePropertyName={'time'}
         />
       </div>
-      <div style={{ margin: '210px 0px' }}>
+      <div style={{ margin: '210px 0px', overflow: 'scroll' }}>
+        {' '}
         <AskChart
           type="mixedStackBar"
           data={data}
