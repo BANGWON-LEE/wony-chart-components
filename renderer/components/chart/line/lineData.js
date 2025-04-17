@@ -10,8 +10,6 @@ export function setLineData(data, styleState, timePropertyName) {
     el => el.toString() !== timePropertyName
   )
 
-  console.log('styleSEt', styleState)
-
   return {
     labels,
     datasets: notLabelTitleArr.map((line, index) => ({
