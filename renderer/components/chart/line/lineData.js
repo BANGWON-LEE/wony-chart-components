@@ -52,6 +52,8 @@ export function setInitialLineStyle(
 }
 
 export function setOptionLineData(chartOptionState) {
+  const optionMaxTicksLimit = chartOptionState?.scales.x.ticks.maxTicksLimit
+
   const zoomOptions = {
     pan: {
       enabled: true,
@@ -87,9 +89,7 @@ export function setOptionLineData(chartOptionState) {
           dash: [7, 9],
         },
         ticks: {
-          maxTicksLimit:
-            chartOptionState?.scales.x.ticks.maxTicksLimit ||
-            initialMaxTicksLimit,
+          maxTicksLimit: optionMaxTicksLimit || initialMaxTicksLimit,
         },
       },
       y: {
@@ -107,7 +107,7 @@ export function setInitialOption(uniqueChartName) {
   const optionUniqueChartName = uniqueChartName + 'Option'
   const styleArr = getStorage(optionUniqueChartName)
 
-  console.log('styleARr', styleArr?.scales.x.ticks.maxTicksLimit)
+  const optionMaxTicksLimit = styleArr?.scales.x.ticks.maxTicksLimit
 
   const zoomOptions = {
     pan: {
@@ -144,8 +144,7 @@ export function setInitialOption(uniqueChartName) {
           dash: [7, 9],
         },
         ticks: {
-          maxTicksLimit:
-            styleArr?.scales.x.ticks.maxTicksLimit || initialMaxTicksLimit,
+          maxTicksLimit: optionMaxTicksLimit || initialMaxTicksLimit,
         },
       },
       y: {
