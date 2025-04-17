@@ -47,13 +47,11 @@ export default function StyleCustomFilter(props) {
     })
   }
 
-  console.log('xxxC', chartOptionState)
-
   function updateMaxTicksLimit(event) {
     setChartOptionState(prev => {
       const newState = { ...prev }
       newState.scales.x.ticks.maxTicksLimit = Number(event)
-      console.log('fffffqqqq', newState)
+
       return newState
     })
   }
@@ -89,8 +87,6 @@ export default function StyleCustomFilter(props) {
   }
 
   const chartType = ['line', 'bar']
-
-  console.log('styleStatestyleState', styleState)
 
   return (
     <div className="fixed inset-0 flex items-center justify-center bg-slate-500 bg-opacity-20">

@@ -1,5 +1,9 @@
 import { getStorage } from '../common/common'
-import { initialBarThickness, initialLineWidth } from '../common/initialStyle'
+import {
+  initialBarThickness,
+  initialLineWidth,
+  initialMaxTicksLimit,
+} from '../common/initialStyle'
 import { colorArr } from '../style/styleElement'
 
 export function setMixedData(data, styleState, timePropertyName) {
@@ -56,4 +60,111 @@ export function setInitialMixedStyle(
   }))
 
   return styleStateObjArr
+}
+
+export function setOptionMixedData(chartOptionState) {
+  const optionMaxticksLimit = chartOptionState?.scales.x.ticks.maxTicksLimit
+
+  const zoomOptions = {
+    pan: {
+      enabled: true,
+      mode: 'x',
+    },
+    zoom: {
+      wheel: {
+        enabled: true,
+      },
+      pinch: {
+        enabled: true,
+      },
+      mode: 'x',
+    },
+  }
+
+  const options = {
+    responsive: false,
+    plugins: {
+      zoom: zoomOptions,
+      legend: {
+        position: 'bottom',
+      },
+      title: {
+        display: true,
+        position: 'top',
+        text: 'Chart.js mixed Chart',
+      },
+    },
+    scales: {
+      x: {
+        border: {
+          dash: [7, 9],
+        },
+        ticks: {
+          maxTicksLimit: optionMaxticksLimit || initialMaxTicksLimit,
+        },
+      },
+      y: {
+        grid: {
+          display: false,
+        },
+      },
+    },
+  }
+
+  return options
+}
+
+export function setInitialOptionMixed(uniqueChartName) {
+  const optionUniqueChartName = uniqueChartName + 'Option'
+  const styleArr = getStorage(optionUniqueChartName)
+
+  const optionMaxTicksLimit = styleArr?.scales.x.ticks.maxTicksLimit
+  // console.log('mixed cnt', styleArr)
+  const zoomOptions = {
+    pan: {
+      enabled: true,
+      mode: 'x',
+    },
+    zoom: {
+      wheel: {
+        enabled: true,
+      },
+      pinch: {
+        enabled: true,
+      },
+      mode: 'x',
+    },
+  }
+
+  const options = {
+    responsive: false,
+    plugins: {
+      zoom: zoomOptions,
+      legend: {
+        position: 'bottom',
+      },
+      title: {
+        display: true,
+        position: 'top',
+        text: 'Chart.js mixed Chart',
+      },
+    },
+    scales: {
+      x: {
+        border: {
+          dash: [7, 9],
+        },
+        ticks: {
+          maxTicksLimit: optionMaxTicksLimit || initialMaxTicksLimit,
+        },
+      },
+      y: {
+        grid: {
+          display: false,
+        },
+      },
+    },
+  }
+
+  return options
 }

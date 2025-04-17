@@ -1,50 +1,7 @@
 import { Chart } from 'react-chartjs-2'
 
 export default function MixedMain(props) {
-  const { data, width, height } = props
-
-  const zoomOptions = {
-    pan: {
-      enabled: true,
-      mode: 'x',
-    },
-    zoom: {
-      wheel: {
-        enabled: true,
-      },
-      pinch: {
-        enabled: true,
-      },
-      mode: 'x',
-    },
-  }
-
-  const options = {
-    responsive: false,
-    plugins: {
-      zoom: zoomOptions,
-      legend: {
-        position: 'bottom',
-      },
-      title: {
-        display: true,
-        position: 'top',
-        text: 'Chart.js mixed Chart',
-      },
-    },
-    scales: {
-      x: {
-        border: {
-          dash: [7, 9],
-        },
-      },
-      y: {
-        grid: {
-          display: false,
-        },
-      },
-    },
-  }
+  const { data, options, width, height } = props
 
   return (
     <div>

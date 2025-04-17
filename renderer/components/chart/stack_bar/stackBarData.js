@@ -1,5 +1,8 @@
 import { getStorage } from '../common/common'
-import { initialBarThickness } from '../common/initialStyle'
+import {
+  initialBarThickness,
+  initialMaxTicksLimit,
+} from '../common/initialStyle'
 import { colorArr } from '../style/styleElement'
 
 export function setStackBarData(data, styleState, timePropertyName) {
@@ -44,4 +47,114 @@ export function setInitialStackBarStyle(
   }))
 
   return styleStateObjArr
+}
+
+export function setInitialOptionStackBar(uniqueChartName) {
+  const optionUniqueChartName = uniqueChartName + 'Option'
+  const styleArr = getStorage(optionUniqueChartName)
+
+  const optionMaxTicksLimit = styleArr?.scales.x.ticks.maxTicksLimit
+  const zoomOptions = {
+    pan: {
+      enabled: true,
+      mode: 'x',
+    },
+    zoom: {
+      wheel: {
+        enabled: true,
+      },
+      pinch: {
+        enabled: true,
+      },
+      mode: 'x',
+    },
+  }
+
+  const options = {
+    responsive: false,
+    plugins: {
+      zoom: zoomOptions,
+      legend: {
+        position: 'bottom',
+      },
+      title: {
+        display: true,
+        position: 'top',
+        text: 'Chart.js stackBar Chart',
+      },
+    },
+    scales: {
+      x: {
+        stacked: true,
+        border: {
+          dash: [7, 9],
+        },
+        ticks: {
+          maxTicksLimit: optionMaxTicksLimit || initialMaxTicksLimit,
+        },
+      },
+      y: {
+        stacked: true,
+        grid: {
+          display: false,
+        },
+      },
+    },
+  }
+
+  return options
+}
+
+export function setOptionStackBarData(chartOptionState) {
+  const optionMaxTicksLimit = chartOptionState?.scales.x.ticks.maxTicksLimit
+
+  const zoomOptions = {
+    pan: {
+      enabled: true,
+      mode: 'x',
+    },
+    zoom: {
+      wheel: {
+        enabled: true,
+      },
+      pinch: {
+        enabled: true,
+      },
+      mode: 'x',
+    },
+  }
+
+  const options = {
+    responsive: false,
+    plugins: {
+      zoom: zoomOptions,
+      legend: {
+        position: 'bottom',
+      },
+      title: {
+        display: true,
+        position: 'top',
+        text: 'Chart.js stackBar Chart',
+      },
+    },
+    scales: {
+      x: {
+        stacked: true,
+        border: {
+          dash: [7, 9],
+        },
+        ticks: {
+          maxTicksLimit: optionMaxTicksLimit || initialMaxTicksLimit,
+        },
+      },
+      y: {
+        stacked: true,
+        grid: {
+          display: false,
+        },
+      },
+    },
+  }
+
+  return options
 }

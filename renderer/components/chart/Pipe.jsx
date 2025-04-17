@@ -31,23 +31,37 @@ import LineMain from './line/LineMain'
 import { useState } from 'react'
 import {
   setInitialLineStyle,
-  setInitialOption,
+  setInitialOptionLine,
   setLineData,
   setOptionLineData,
 } from './line/lineData'
 import StyleCustomFilter from './StyleCustomFilter'
-import { setInitialMixedStyle, setMixedData } from './mixied/mixedData'
+import {
+  setInitialMixedStyle,
+  setInitialOptionMixed,
+  setMixedData,
+  setOptionMixedData,
+} from './mixied/mixedData'
 import MixedMain from './mixied/mixedMain'
 import BarMain from './bar/BarMain'
-import { setBarData, setInitialBarStyle } from './bar/barData'
+import {
+  setBarData,
+  setInitialBarStyle,
+  setInitialOptionBar,
+  setOptionBarData,
+} from './bar/barData'
 import StackBarMain from './stack_bar/StackBarMain'
 import {
+  setInitialOptionStackBar,
   setInitialStackBarStyle,
+  setOptionStackBarData,
   setStackBarData,
 } from './stack_bar/stackBarData'
 import {
   setInitialMixedStackBarStyle,
+  setInitialOptionMixedStackBar,
   setMixedStackBarData,
+  setOptionMixedStackBarData,
 } from './mixed_stack_bar/mixedStackBarData'
 import MixedStackBarMain from './mixed_stack_bar/mixedStackBarMain'
 
@@ -74,26 +88,46 @@ export default function Pipe(props) {
     }
   }
 
+  const optionDataArr = function () {
+    // 타입에 결정되며, 초기 환경을 설정해주는 함수의 리턴값을 가져옴
+    switch (type) {
+      case 'line':
+        return setInitialOptionLine(uniqueChartName)
+      case 'mixed':
+        return setInitialOptionMixed(uniqueChartName)
+      case 'bar':
+        return setInitialOptionBar(uniqueChartName)
+      case 'stackBar':
+        return setInitialOptionStackBar(uniqueChartName)
+      case 'mixedStackBar':
+        return setInitialOptionMixedStackBar(uniqueChartName)
+    }
+  }
+
   const [styleState, setStyleState] = useState(styleDataArr()) // 위에서 할당한 함수 리턴값을 초기값으로 잡아준다.
 
-  const initialOptionData = setInitialOption(uniqueChartName)
+  // const initialOptionData = setInitialOption(uniqueChartName)
 
   // StyleCustomFilter 컴포넌트에서 수정 및 변경한 값([styleState, setStyleState]) 및 차트에 들어 갈 값을 아래 코드, 변수들에 할당한다.
   // 그리고 chartUi의 각 컴포넌트에 데이터로 넘겨준다.
-  const [chartOptionState, setChartOptionState] = useState(initialOptionData)
+  const [chartOptionState, setChartOptionState] = useState(optionDataArr())
   const resultLineData = setLineData(data, styleState, timePropertyName)
-  // const resultLineOptionData = setOptionLineData(chartOptionState)
+  const resultLineOptionData = setOptionLineData(chartOptionState)
   const resultMixedData = setMixedData(data, styleState, timePropertyName)
+  const resultMixedOptionData = setOptionMixedData(chartOptionState)
   const resultBarData = setBarData(data, styleState, timePropertyName)
+  const resultBarOptionData = setOptionBarData(chartOptionState)
   const resultStackBarData = setStackBarData(data, styleState, timePropertyName)
+  const resultStackBarOptionData = setOptionStackBarData(chartOptionState)
   const resultMixedStackBarData = setMixedStackBarData(
     data,
     styleState,
     timePropertyName
   )
+  const resultMixedStackBarOptionData =
+    setOptionMixedStackBarData(chartOptionState)
   // 차트의 옵션에 관한 설정을 담은 state
 
-  console.log('resultC', chartOptionState)
   const [openCustomFilterModalState, setOpenCustomFilterModalState] =
     useState(false)
 
@@ -108,7 +142,7 @@ export default function Pipe(props) {
         return (
           <LineMain
             data={resultLineData}
-            options={chartOptionState}
+            options={resultLineOptionData}
             width={width}
             height={height}
           />
@@ -116,14 +150,27 @@ export default function Pipe(props) {
 
       case 'mixed':
         return (
-          <MixedMain data={resultMixedData} width={width} height={height} />
+          <MixedMain
+            data={resultMixedData}
+            options={resultMixedOptionData}
+            width={width}
+            height={height}
+          />
         )
       case 'bar':
-        return <BarMain data={resultBarData} width={width} height={height} />
+        return (
+          <BarMain
+            data={resultBarData}
+            options={resultBarOptionData}
+            width={width}
+            height={height}
+          />
+        )
       case 'stackBar':
         return (
           <StackBarMain
             data={resultStackBarData}
+            options={resultStackBarOptionData}
             width={width}
             height={height}
           />
@@ -132,6 +179,7 @@ export default function Pipe(props) {
         return (
           <MixedStackBarMain
             data={resultMixedStackBarData}
+            options={resultMixedStackBarOptionData}
             width={width}
             height={height}
           />

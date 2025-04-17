@@ -35,8 +35,6 @@ export function setInitialLineStyle(
 
   const styleArr = getStorage(uniqueChartName)
 
-  console.log('styleARr', styleArr)
-
   const sizeLineData = Object.keys(notLabelTitleArr).length // time을 제외한 속성의 개수
   const styleStateObjArr = Array.from({ length: sizeLineData }, (_, index) => ({
     id: 'line' + index,
@@ -101,7 +99,7 @@ export function setOptionLineData(chartOptionState) {
   return options
 }
 
-export function setInitialOption(uniqueChartName) {
+export function setInitialOptionLine(uniqueChartName) {
   const optionUniqueChartName = uniqueChartName + 'Option'
   const styleArr = getStorage(optionUniqueChartName)
 
